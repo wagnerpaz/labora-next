@@ -1,0 +1,59 @@
+{
+   "fullName": "Wagner de Oliveira Paz",
+   "nickname": "Wagner",
+   "profession": "Software Engineer",
+   "about": "Wagner is a software engineer with a technology-agnostic approach, working for sixteen years planning and executing corporative projects in different areas like the plastic industry, buildings concierge remote security, university's student financials, online learning platform, and lifestyle apps. He has a solid foundation in object orientation, relational databases, functional programming, web, and mobile development. Wagner is now focused on the front end, mainly with React.",
+   "addresses": {
+      "residential": {
+         "country": "Brazil",
+         "state": "SC",
+         "city": "Criciúma"
+      },
+      "socialMedia": {
+         "facebook": "https://www.facebook.com/wagner.o.paz",
+         "instagram": "https://www.instagram.com/wagneropaz/",
+         "linkedin": "https://www.linkedin.com/in/wagner-de-oliveira-paz/",
+         "github": "https://github.com/wagnerpaz",
+         "stackoverflow": "https://stackoverflow.com/users/4419998/wagner-paz"
+      },
+      "email": "wagner.paz@metapriori.com",
+      "phoneNumber": "+55 (48) 99961-8483"
+   },
+   "experience": [
+      {
+         "name": "HTML",
+         "years": 16
+      },
+      {
+         "name": "CSS",
+         "years": 16
+      },
+      {
+         "name": "SQL",
+         "years": 16
+      },
+      {
+         "name": "JavaScript",
+         "years": 3
+      },
+      {
+         "name": "TypeScript",
+         "years": 3,
+         "highlight": true
+      },
+      {
+         "name": "React",
+         "years": 3,
+         "highlight": true
+      },
+      {
+         "name": "Next.js",
+         "years": 3,
+         "highlight": true
+      },
+      {
+         "name": "Sass",
+         "years": 3
+      }
+   ]
+}
