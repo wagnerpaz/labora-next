@@ -28,6 +28,7 @@ const ProfilePage: NextPage<Props> = ({ theme, profile }) => {
                         {Object.keys(profile.addresses.socialMedia).map(
                            (smKey) => (
                               <SocialMediaIconLink
+                                 key={smKey}
                                  socialMediaName={smKey}
                                  address={profile.addresses.socialMedia[smKey]}
                               />
@@ -40,12 +41,12 @@ const ProfilePage: NextPage<Props> = ({ theme, profile }) => {
          </header>
          <div className="flex flex-col justify-start items-center my-2.5">
             <main className="container -mt-40 bg-white shadow-xl rounded-lg p-8 pr-0 gap-8 h-[calc(100vh-5rem)]">
-               <div className="overflow-auto h-full pr-8 scrollbar scrollbar-thumb-secondary-light scrollbar-track-gray-100 scrollbar-thumb-rounded-md">
+               <div className="overflow-auto h-full pr-8 scrollbar-thin scrollbar-thumb-secondary-light scrollbar-track-gray-100 scrollbar-thumb-rounded-md">
                   <ProfileAbout profile={profile} />
                   <div className="flex items-start mt-8">
                      <div className="flex items-center mb-8 w-[300px] shrink-0">
                         <MdHomeWork
-                           color={theme.secondaryColorLight}
+                           color={theme.secondaryColorDark}
                            size={32}
                         />
                         <span className="text-3xl ml-2">Employment</span>
@@ -60,14 +61,14 @@ const ProfilePage: NextPage<Props> = ({ theme, profile }) => {
                                  </span>
                                  <ul className="ml-8 list-circle mt-2">
                                     {empl.achievements.map((achv) => (
-                                       <li>{achv}</li>
+                                       <li key={achv}>{achv}</li>
                                     ))}
                                  </ul>
                                  <span className="flex gap-2 mt-2 opacity-50">
                                     Stack:{' '}
                                     <ul className="flex gap-2">
                                        {empl.knowledge.map((k, index) => (
-                                          <span>
+                                          <span key={k}>
                                              <li className="inline-block">
                                                 {k}
                                              </li>

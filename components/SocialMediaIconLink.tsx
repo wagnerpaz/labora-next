@@ -18,7 +18,7 @@ const SocialMediaIconLink: React.FC<Props> = ({ socialMediaName, address }) => {
 
    return (
       <li className="flex items-center">
-         <a href={address} target="_blank">
+         <a href={address} target="_blank" rel="noreferrer">
             {icons[socialMediaName]}
          </a>
       </li>
