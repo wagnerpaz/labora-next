@@ -30,6 +30,16 @@ export type IProfile = {
          highlight: boolean
       }
    ]
+   employment: [
+      {
+         employer: string
+         role: string
+         start: string
+         end?: string
+         achievements?: [string]
+         knowledge?: [string]
+      }
+   ]
 }
 
 const schema = new Schema<IProfile>({
@@ -58,6 +68,16 @@ const schema = new Schema<IProfile>({
          name: String,
          years: Number,
          highlight: Boolean,
+      },
+   ],
+   employment: [
+      {
+         employer: String,
+         role: String,
+         start: String,
+         end: { type: String, required: false },
+         achievements: { type: [String], required: false },
+         knowledge: { type: [String], required: false },
       },
    ],
 })

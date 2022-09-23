@@ -1,6 +1,7 @@
-import themeStaticProps from 'static-props/themeStaticProps'
+import themeSSR from 'server-side-props/themeSSR'
 import type { NextPage } from 'next'
-import { pipeProps } from 'next-pipe-props'
+
+import { ssrHelpers } from 'lib/ssrHelpers'
 
 const Home: NextPage = () => {
    return (
@@ -14,6 +15,6 @@ const Home: NextPage = () => {
    )
 }
 
-export const getStaticProps = pipeProps(themeStaticProps)
+export const getServerSideProps = ssrHelpers.pipe(themeSSR())
 
 export default Home

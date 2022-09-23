@@ -17,7 +17,10 @@ module.exports = {
          backgroundImage: {
             pattern1: `url('/imgs/vecteezy_geometric-pattern-technology-green-background_4689400.jpg')`,
          },
+         listStyleType: {
+            circle: 'circle',
+         },
       },
    },
-   plugins: [],
+   plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 }

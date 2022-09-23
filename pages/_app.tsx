@@ -8,12 +8,12 @@ import '../styles/globals.css'
 import { getAccessibleColor } from 'lib/getAccesibleColor'
 
 function MyApp({ Component, pageProps }: AppProps<{ theme: ITheme }>) {
-   const { primaryColor, secondaryColorLight, secondaryColorDark } =
-      pageProps.theme || {
-         primaryColor: '#000',
-         secondaryColorLight: '#000',
-         secondaryColorDark: '#000',
-      }
+   const { theme } = pageProps
+   const { primaryColor, secondaryColorLight, secondaryColorDark } = theme || {
+      primaryColor: '#000',
+      secondaryColorLight: '#000',
+      secondaryColorDark: '#000',
+   }
    const primaryColorVar = getRGBColor(primaryColor, 'primary')
    const primaryColorA11yVar = getRGBColor(
       getAccessibleColor(primaryColor),
