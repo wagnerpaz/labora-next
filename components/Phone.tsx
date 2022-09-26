@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdPhone } from 'react-icons/md'
-import { IProfile } from 'api/models/Profile'
+import { IProfile } from 'models/Profile'
 
 const Phone: React.FC<Props> = ({ profile }) => {
    return (

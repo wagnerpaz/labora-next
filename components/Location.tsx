@@ -1,5 +1,5 @@
 import { MdLocationPin } from 'react-icons/md'
-import { IProfile } from 'api/models/Profile'
+import { IProfile } from 'models/Profile'
 import React from 'react'
 
 const ProfileAbout: React.FC<Props> = ({ profile }) => {

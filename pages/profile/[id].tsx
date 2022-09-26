@@ -4,14 +4,14 @@ import classNames from 'classnames'
 
 import themeStaticProps from 'server-side-props/themeSSR'
 import profileStaticProps from 'server-side-props/profileSSR'
-import { IProfile } from 'api/models/Profile'
+import { IProfile } from 'models/Profile'
 import Location from 'components/Location'
 import Phone from 'components/Phone'
 import ProfileAbout from 'components/ProfileAbout'
 import Email from 'components/Email'
 import SocialMediaIconLink from 'components/SocialMediaIconLink'
 import { ssrHelpers } from 'lib/ssrHelpers'
-import { ITheme } from 'api/models/Theme'
+import { ITheme } from 'models/Theme'
 
 const ProfilePage: NextPage<Props> = ({
    theme,

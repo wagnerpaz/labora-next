@@ -1,5 +1,5 @@
 import connectDB from 'lib/mongooseConnect'
-import Theme from 'api/models/Theme'
+import Theme from 'models/Theme'
 import prepareToSerializeJSON from 'lib/prepareToSerializeJSON'
 import { TPipeGetServerSideProps } from 'lib/ssrHelpers'
 

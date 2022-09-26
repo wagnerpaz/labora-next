@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { IProfile } from 'api/models/Profile'
+import { IProfile } from 'models/Profile'
 import Chip from 'components/Chip'
 
 const ProfileAbout: React.FC<Props> = ({ profile }) => {

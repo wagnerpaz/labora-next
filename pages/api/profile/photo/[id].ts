@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import connectDB from 'lib/mongooseConnect'
-import Profile from 'api/models/Profile'
+import Profile from 'models/Profile'
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
    connectDB()

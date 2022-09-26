@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 import connectDB from 'lib/mongooseConnect'
-import Profile from 'api/models/Profile'
+import Profile from 'models/Profile'
 import prepareToSerializeJSON from 'lib/prepareToSerializeJSON'
 import { TPipeGetServerSideProps } from 'lib/ssrHelpers'
 
