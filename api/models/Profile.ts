@@ -3,8 +3,10 @@ import { model, Schema } from 'mongoose'
 import registerService from 'lib/registerService'
 
 export type IProfile = {
+   _id: string
    fullName: string
    nickname: string
+   photo?: string
    profession: string
    about?: string
    addresses: {
@@ -45,6 +47,7 @@ export type IProfile = {
 const schema = new Schema<IProfile>({
    fullName: { type: String, required: true },
    nickname: { type: String, required: true },
+   photo: { type: String, required: false },
    profession: { type: String, required: true },
    about: { type: String, required: false },
    addresses: {

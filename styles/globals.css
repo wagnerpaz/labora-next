@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+   -webkit-print-color-adjust: exact !important;
+}
+
+@media print {
+   body {
+      zoom: 0.75;
+   }
+}
+
+@page {
+   margin: 0;
+}

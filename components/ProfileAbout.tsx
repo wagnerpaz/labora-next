@@ -1,6 +1,7 @@
-import { IProfile } from 'api/models/Profile'
 import React from 'react'
+import Image from 'next/image'
 
+import { IProfile } from 'api/models/Profile'
 import Chip from 'components/Chip'
 
 const ProfileAbout: React.FC<Props> = ({ profile }) => {
@@ -8,7 +9,14 @@ const ProfileAbout: React.FC<Props> = ({ profile }) => {
 
    return (
       <div className="flex flex-row gap-8">
-         <div className="bg-[url('/images/professional-me.jpeg')] w-[300px] h-[300px] bg-cover rounded-sm shrink-0" />
+         <div className="h-[300px] w-[300px] relative shrink-0 rounded-md">
+            <Image
+               src={`/api/profile/photo/${profile._id}`}
+               layout="fill" // required
+               objectFit="cover" // change to suit your needs
+               objectPosition="top"
+            />
+         </div>
          <div className="flex flex-col min-h-[300px] justify-between">
             <div className="flex flex-col">
                <span className="text-3xl">{profile.fullName}</span>
