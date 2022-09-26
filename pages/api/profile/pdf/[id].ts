@@ -9,10 +9,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Buffer>) {
    const browser = await puppeteer.launch({ headless: true })
    const page = await browser.newPage()
    await page.emulateMediaType('screen')
-   await page.goto('http://localhost:3000/profile/' + req.query.id, {
+   await page.goto(`${process.env.API_URL}/profile/` + req.query.id, {
       waitUntil: 'networkidle0',
    })
-   console.log('http://localhost:3000/profile/' + req.query.id)
    const pdf = await page.pdf({
       printBackground: true,
       format: 'A4',
