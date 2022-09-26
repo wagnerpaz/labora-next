@@ -10,11 +10,10 @@ const ProfileAbout: React.FC<Props> = ({ profile }) => {
    return (
       <div className="flex flex-row gap-8">
          <div className="h-[300px] w-[300px] relative shrink-0 rounded-md">
-            <Image
+            <img
+               className="object-cover object-top w-[300px] h-[300px]"
+               alt="Profile Photo"
                src={`/api/profile/photo/${profile._id}`}
-               layout="fill" // required
-               objectFit="cover" // change to suit your needs
-               objectPosition="top"
             />
          </div>
          <div className="flex flex-col min-h-[300px] justify-between">
