@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import connectDB from 'lib/mongooseConnect'
-import Profile, { IProfile } from 'api/models/Profile'
+import Profile from 'api/models/Profile'
 
-async function handler(req: NextApiRequest, res: NextApiResponse<IProfile>) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
    connectDB()
 
    const profile = await Profile.findById({ _id: req.query.id }, { photo: 1 })
@@ -11,6 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<IProfile>) {
 
    if (photo) {
       res.setHeader('Content-Type', 'image/jpeg')
+      // @ts-ignore
       res.status(200).send(Buffer.from(photo, 'base64'))
       res.end()
    } else {

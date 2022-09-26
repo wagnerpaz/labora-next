@@ -2,9 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import puppeteer from 'puppeteer'
 
 import connectDB from 'lib/mongooseConnect'
-import { IProfile } from 'api/models/Profile'
 
-async function handler(req: NextApiRequest, res: NextApiResponse<IProfile>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<Buffer>) {
    connectDB()
 
    const browser = await puppeteer.launch({ headless: true })
@@ -14,16 +13,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse<IProfile>) {
       waitUntil: 'networkidle0',
    })
    console.log('http://localhost:3000/profile/' + req.query.id)
-   const photo = await page.pdf({
+   const pdf = await page.pdf({
       printBackground: true,
       format: 'A4',
    })
 
    await browser.close()
 
-   if (photo) {
+   if (pdf) {
       res.setHeader('Content-Type', 'application/pdf')
-      res.status(200).send(Buffer.from(photo, 'base64'))
+      // @ts-ignore
+      res.status(200).send(Buffer.from(pdf, 'base64'))
       res.end()
    } else {
       res.status(404).end()
