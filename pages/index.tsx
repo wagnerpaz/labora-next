@@ -16,7 +16,7 @@ const Home: NextPage<Props> = ({ profiles }) => {
          <div className="flex justify-center items-start bg-secondary-light">
             <div className="container w-full gap-4 shadow-2xl border-t-2 pt-4 bg-white">
                {profiles.map((profile) => (
-                  <div className="p-4 bg-white">
+                  <div key={profile._id} className="p-4 bg-white">
                      <ProfileThumbnail profile={profile} />
                   </div>
                ))}
