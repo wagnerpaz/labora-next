@@ -16,13 +16,13 @@ const SocialMediaIconLink: React.FC<Props> = ({ socialMediaName, address }) => {
       stackoverflow: <FaStackOverflow />,
    }
 
-   return (
+   return address ? (
       <li className="flex items-center">
          <a href={address} target="_blank" rel="noreferrer">
             {icons[socialMediaName]}
          </a>
       </li>
-   )
+   ) : null
 }
 
 type Props = {

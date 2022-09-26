@@ -2,8 +2,8 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { MdHomeWork } from 'react-icons/md'
 import classNames from 'classnames'
 
-import themeStaticProps from 'server-side-props/themeSSR'
-import profileStaticProps from 'server-side-props/profileSSR'
+import themeSSR from 'server-side-props/themeSSR'
+import profileSSR from 'server-side-props/profileSSR'
 import { IProfile } from 'models/Profile'
 import Location from 'components/Location'
 import Phone from 'components/Phone'
@@ -12,6 +12,7 @@ import Email from 'components/Email'
 import SocialMediaIconLink from 'components/SocialMediaIconLink'
 import { ssrHelpers } from 'lib/ssrHelpers'
 import { ITheme } from 'models/Theme'
+import BrandHeader from 'components/BrandHeader'
 
 const ProfilePage: NextPage<Props> = ({
    theme,
@@ -20,8 +21,9 @@ const ProfilePage: NextPage<Props> = ({
 }) => {
    return (
       <div className="w-full h-full">
-         <header className="text-primary-a11y bg-[url('/images/vecteezy_geometric-pattern-technology-green-background_4689400.jpg')]">
-            <div className="bg-primary bg-opacity-25">
+         <header>
+            <BrandHeader />
+            <div className="text-primary-a11y bg-primary">
                <address className="not-italic flex justify-center items-start py-2.5 h-48">
                   <div className="container flex flex-row justify-between space-x-4 print:px-4">
                      <ul className="flex flex-row space-x-4">
@@ -29,17 +31,21 @@ const ProfilePage: NextPage<Props> = ({
                         <Phone profile={profile} />
                         <Email profile={profile} />
                      </ul>
-                     <ul className="flex flex-row space-x-4 print:hidden">
-                        {Object.keys(profile.addresses.socialMedia).map(
-                           (smKey) => (
-                              <SocialMediaIconLink
-                                 key={smKey}
-                                 socialMediaName={smKey}
-                                 address={profile.addresses.socialMedia[smKey]}
-                              />
-                           )
-                        )}
-                     </ul>
+                     {profile.addresses?.socialMedia && (
+                        <ul className="flex flex-row space-x-4 print:hidden">
+                           {Object.keys(profile.addresses.socialMedia).map(
+                              (smKey) => (
+                                 <SocialMediaIconLink
+                                    key={smKey}
+                                    socialMediaName={smKey}
+                                    address={
+                                       profile.addresses.socialMedia[smKey]
+                                    }
+                                 />
+                              )
+                           )}
+                        </ul>
+                     )}
                   </div>
                </address>
             </div>
@@ -54,7 +60,7 @@ const ProfilePage: NextPage<Props> = ({
                >
                   <ProfileAbout profile={profile} />
                   {profile.employment?.length > 0 && (
-                     <div className="mt-8">
+                     <div className="mt-8 float-none">
                         <div className="flex items-center mb-8 w-[300px] shrink-0">
                            <MdHomeWork
                               color={theme.secondaryColorDark}
@@ -116,8 +122,8 @@ type Props = {
 }
 
 export const getServerSideProps: GetServerSideProps = ssrHelpers.pipe(
-   themeStaticProps(),
-   profileStaticProps()
+   themeSSR(),
+   profileSSR()
 )
 
 export default ProfilePage

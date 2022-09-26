@@ -3,7 +3,7 @@ import { IProfile } from 'models/Profile'
 import React from 'react'
 
 const ProfileAbout: React.FC<Props> = ({ profile }) => {
-   return (
+   return profile.addresses?.residential ? (
       <li className="flex flex-row items-center space-x-2">
          <MdLocationPin />
          <span>
@@ -14,7 +14,7 @@ const ProfileAbout: React.FC<Props> = ({ profile }) => {
             {profile.addresses.residential.state}
          </span>
       </li>
-   )
+   ) : null
 }
 
 type Props = {

@@ -12,6 +12,11 @@ body {
    }
 }
 
-@page {
+@page :first {
    margin: 0;
+   margin-bottom: 20px;
+}
+
+@page {
+   margin: 20px 0;
 }

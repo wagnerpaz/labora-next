@@ -2,19 +2,34 @@ import themeSSR from 'server-side-props/themeSSR'
 import type { NextPage } from 'next'
 
 import { ssrHelpers } from 'lib/ssrHelpers'
+import BrandHeader from 'components/BrandHeader'
+import profilesSSR from 'server-side-props/profilesSSR'
+import { IProfile } from 'models/Profile'
+import ProfileThumbnail from 'components/ProfileThumbnail'
 
-const Home: NextPage = () => {
+const Home: NextPage<Props> = ({ profiles }) => {
    return (
-      <header>
-         <div className="flex flex-col">
-            <address className="flex justify-center bg-primary text-primary-a11y py-2.5">
-               <div className="container">MetaPriori</div>
-            </address>
+      <>
+         <header>
+            <BrandHeader />
+         </header>
+         <div className="flex justify-center items-start bg-secondary-light">
+            <div className="container w-full gap-4 shadow-2xl border-t-2 pt-4 bg-white">
+               {profiles.map((profile) => (
+                  <div className="p-4 bg-white">
+                     <ProfileThumbnail profile={profile} />
+                  </div>
+               ))}
+            </div>
          </div>
-      </header>
+      </>
    )
 }
 
-export const getServerSideProps = ssrHelpers.pipe(themeSSR())
+type Props = {
+   profiles: [IProfile]
+}
+
+export const getServerSideProps = ssrHelpers.pipe(themeSSR(), profilesSSR())
 
 export default Home
