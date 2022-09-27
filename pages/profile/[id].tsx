@@ -69,8 +69,8 @@ const ProfilePage: NextPage<Props> = ({
                            />
                            <span className="text-3xl ml-2">Education</span>
                         </div>
-                        {profile.education?.map((ed) => (
-                           <div className="ml-8">
+                        {profile.education?.map((ed, index) => (
+                           <div key={index} className="ml-8">
                               <span className="text-xl">{ed.title}</span>
                               {` `}
                               <span>
