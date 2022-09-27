@@ -5,7 +5,7 @@ import React from 'react'
 const BrandHeader: React.FC = () => {
    return (
       <div className="flex justify-center items-start">
-         <div className="container w-full flex justify-between">
+         <div className="container flex justify-between">
             <Link href="/">
                <Image
                   src="/images/metapriori_logo_small50.png"

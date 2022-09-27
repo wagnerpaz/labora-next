@@ -1,24 +1,21 @@
 import { MdLocationPin } from 'react-icons/md'
-import { IProfile } from 'models/Profile'
 import React from 'react'
 
-const ProfileAbout: React.FC<Props> = ({ profile }) => {
-   return profile.addresses?.residential ? (
-      <li className="flex flex-row items-center space-x-2">
-         <MdLocationPin />
-         <span>
-            {profile.addresses.residential.country}
-            {', '}
-            {profile.addresses.residential.city}
-            {' - '}
-            {profile.addresses.residential.state}
-         </span>
-      </li>
+const ProfileAbout: React.FC<Props> = ({ country, city, state }) => {
+   return country || city || state ? (
+      <div className="inline-block">
+         <li className="flex flex-row items-center space-x-2">
+            <MdLocationPin />
+            <span>{`${country}, ${city} - ${state}`}</span>
+         </li>
+      </div>
    ) : null
 }
 
 type Props = {
-   profile: IProfile
+   country: string
+   city: string
+   state: string
 }
 
 export default ProfileAbout

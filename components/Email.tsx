@@ -1,19 +1,17 @@
 import React from 'react'
 import { MdEmail } from 'react-icons/md'
 
-import { IProfile } from 'models/Profile'
-
-const Email: React.FC<Props> = ({ profile }) => {
-   return profile.addresses?.email ? (
+const Email: React.FC<Props> = ({ email }) => {
+   return email ? (
       <li className="flex flex-row items-center space-x-2">
          <MdEmail />
-         <span>{profile.addresses.email}</span>
+         <span>{email}</span>
       </li>
    ) : null
 }
 
 type Props = {
-   profile: IProfile
+   email: string
 }
 
 export default Email
