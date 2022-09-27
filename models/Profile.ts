@@ -32,6 +32,19 @@ export type IProfile = {
          highlight: boolean
       }
    ]
+   education: [
+      {
+         title: string
+         start: string
+         end: string
+         institution: string
+         address: {
+            country: string
+            state: string
+            city: string
+         }
+      }
+   ]
    employment: [
       {
          employer: string
@@ -71,6 +84,19 @@ const schema = new Schema<IProfile>({
          name: String,
          years: Number,
          highlight: Boolean,
+      },
+   ],
+   education: [
+      {
+         title: String,
+         start: String,
+         end: { type: String, required: false },
+         institution: String,
+         address: {
+            country: String,
+            state: String,
+            city: String,
+         },
       },
    ],
    employment: [

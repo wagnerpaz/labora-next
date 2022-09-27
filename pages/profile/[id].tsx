@@ -1,5 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { MdHomeWork } from 'react-icons/md'
+import { FaGraduationCap } from 'react-icons/fa'
 import classNames from 'classnames'
 
 import themeSSR from 'server-side-props/themeSSR'
@@ -59,8 +60,32 @@ const ProfilePage: NextPage<Props> = ({
                   )}
                >
                   <ProfileAbout profile={profile} />
+                  {profile.education && (
+                     <div className="mt-8 flex items-start">
+                        <div className="flex items-start mb-8 w-[300px] shrink-0">
+                           <FaGraduationCap
+                              color={theme.secondaryColorDark}
+                              size={32}
+                           />
+                           <span className="text-3xl ml-2">Education</span>
+                        </div>
+                        {profile.education?.map((ed) => (
+                           <div className="ml-8">
+                              <span className="text-xl">{ed.title}</span>
+                              {` `}
+                              <span>
+                                 {ed.start} - {ed.end}
+                              </span>
+                              <span className="block opacity-50">
+                                 {ed.institution} - {ed.address.country},{' '}
+                                 {ed.address.city} - {ed.address.state}
+                              </span>
+                           </div>
+                        ))}
+                     </div>
+                  )}
                   {profile.employment?.length > 0 && (
-                     <div className="mt-8 float-none">
+                     <div className="mt-8 flex items-start">
                         <div className="flex items-center mb-8 w-[300px] shrink-0">
                            <MdHomeWork
                               color={theme.secondaryColorDark}
