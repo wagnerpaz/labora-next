@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { Session } from 'next-auth'
+import { SessionProvider } from 'next-auth/react'
 
 import { ITheme } from 'models/Theme'
 import { getRGBColor } from 'lib/getRGBColor'
@@ -7,8 +9,10 @@ import { getRGBColor } from 'lib/getRGBColor'
 import '../styles/globals.css'
 import { getAccessibleColor } from 'lib/getAccesibleColor'
 
-function MyApp({ Component, pageProps }: AppProps<{ theme: ITheme }>) {
-   const { theme } = pageProps
+function MyApp({
+   Component,
+   pageProps: { session, theme, ...pageProps },
+}: AppProps<{ theme: ITheme; session: Session }>) {
    const { primaryColor, secondaryColorLight, secondaryColorDark } = theme || {
       primaryColor: '#000',
       secondaryColorLight: '#000',
@@ -49,7 +53,9 @@ function MyApp({ Component, pageProps }: AppProps<{ theme: ITheme }>) {
                `}
             </style>
          </Head>
-         <Component {...pageProps} />
+         <SessionProvider session={session}>
+            <Component {...{ ...pageProps, theme }} />
+         </SessionProvider>
       </>
    )
 }
