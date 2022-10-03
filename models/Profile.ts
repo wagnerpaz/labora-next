@@ -4,6 +4,7 @@ import registerService from 'lib/registerService'
 
 export type IProfile = {
    _id: string
+   slug: string
    fullName: string
    nickname: string
    photo?: string
@@ -58,6 +59,7 @@ export type IProfile = {
 }
 
 const schema = new Schema<IProfile>({
+   slug: { type: String, required: true },
    fullName: { type: String, required: true },
    nickname: { type: String, required: true },
    photo: { type: String, required: false },

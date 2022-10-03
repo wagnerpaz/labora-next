@@ -7,7 +7,7 @@
 -  **Next.js** (Backend & Frontend SSR)
 -  **NexAuth.js** (Auth Framework for Next.js)
 -  **React** (Frontend)
--  **Tailwind** (Styling)
+-  **Tailwind CSS** (Styling)
 
 ## Name Options
 

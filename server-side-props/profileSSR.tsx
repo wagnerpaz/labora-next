@@ -8,9 +8,18 @@ import { TPipeGetServerSideProps } from 'lib/ssrHelpers'
 const profileSSR = (): TPipeGetServerSideProps => async (context, input) => {
    connectDB()
 
-   const profile = await Profile.findById(context.params.id as string, {
-      photo: 0,
-   })
+   let profile
+
+   profile = await Profile.findOne(
+      { slug: context.params.slugOrId },
+      { photo: 0 }
+   )
+
+   if (!profile) {
+      profile = await Profile.findById(context.params.slugOrId as string, {
+         photo: 0,
+      })
+   }
 
    // merge props and pass down to the next function
    return prepareToSerializeJSON({

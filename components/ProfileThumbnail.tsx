@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 
 import { IProfile } from 'models/Profile'
@@ -5,10 +6,12 @@ import Link from 'next/link'
 import Expertize from './Expertize'
 
 const ProfileThumbnail: React.FC<Props> = ({ profile }) => {
+   const profileLink = `/profile/${profile.slug || profile._id}`
+
    return (
       <>
          <div className="h-[150px] w-[150px] relative shrink-0 rounded-md float-left mr-4 mb-0">
-            <Link href={`/profile/${profile._id}`}>
+            <Link href={profileLink}>
                <img
                   className="object-cover object-top w-[150px] h-[150px] cursor-pointer"
                   alt="Profile Photo"
@@ -17,7 +20,7 @@ const ProfileThumbnail: React.FC<Props> = ({ profile }) => {
             </Link>
          </div>
          <div className="min-h-[150px]">
-            <Link href={`/profile/${profile._id}`}>
+            <Link href={profileLink}>
                <span className="block text-xl cursor-pointer hover:text-primary">
                   {profile.fullName}
                </span>
