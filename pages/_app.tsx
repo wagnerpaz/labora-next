@@ -5,9 +5,10 @@ import { SessionProvider } from 'next-auth/react'
 
 import { ITheme } from 'models/Theme'
 import { getRGBColor } from 'lib/getRGBColor'
+import { getAccessibleColor } from 'lib/getAccesibleColor'
+import { UserProvider } from 'context/UserContext'
 
 import '../styles/globals.css'
-import { getAccessibleColor } from 'lib/getAccesibleColor'
 
 function MyApp({
    Component,
@@ -54,7 +55,9 @@ function MyApp({
             </style>
          </Head>
          <SessionProvider session={session}>
-            <Component {...{ ...pageProps, theme }} />
+            <UserProvider>
+               <Component {...{ ...pageProps, theme }} />
+            </UserProvider>
          </SessionProvider>
       </>
    )
