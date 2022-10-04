@@ -3,7 +3,7 @@ import React from 'react'
 
 import { IProfile } from 'models/Profile'
 import Link from 'next/link'
-import Expertize from './Expertize'
+import Expertize from '../stateless/Expertize'
 
 const ProfileThumbnail: React.FC<Props> = ({ profile }) => {
    const profileLink = `/profile/${profile.slug || profile._id}`

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Location from 'components/Location'
-import Phone from 'components/Phone'
-import Email from 'components/Email'
-import SocialMediaIconLink from 'components/SocialMediaIconLink'
+import Location from 'components/profile/stateless/Location'
+import Phone from 'components/profile/stateless/Phone'
+import Email from 'components/profile/stateless/Email'
+import SocialMediaIconLink from 'components/profile/stateless/SocialMediaIconLink'
 
 const AddressLine: React.FC<Props> = ({
    country,

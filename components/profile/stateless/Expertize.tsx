@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import Chip from './Chip'
 
-import ProfileContext from 'context/ProfileContext'
+import Chip from 'components/Chip'
+import { IProfile } from 'models/Profile'
 
-const Expertize: React.FC<Props> = ({ hideHighlight, hideNormal }) => {
-   const { profile } = useContext(ProfileContext)
+const Expertize: React.FC<Props> = ({ profile, hideHighlight, hideNormal }) => {
    return (
       <ul className="flex flex-col gap-2 mt-2 whitespace-nowrap">
          <div className="flex flex-wrap gap-1">
@@ -27,6 +26,7 @@ const Expertize: React.FC<Props> = ({ hideHighlight, hideNormal }) => {
 }
 
 type Props = {
+   profile: IProfile
    hideHighlight?: boolean
    hideNormal?: boolean
 }

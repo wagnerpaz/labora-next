@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Location from 'components/Location'
+import Location from 'components/profile/stateless/Location'
 
 const EducationItem: React.FC<Props> = ({
    title,

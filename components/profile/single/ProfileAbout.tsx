@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import EditableSection from 'components/EditableSection'
 import { IProfile } from 'models/Profile'
 import Modal from 'components/mui/Modal'
-import ProfileAboutForm from './forms/ProfileAboutForm'
+import ProfileAboutForm from '../../forms/ProfileAboutForm'
 import usePutProfile from 'hooks/api/usePutProfile'
 import ProfileContext from 'context/ProfileContext'
 

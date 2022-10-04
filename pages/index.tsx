@@ -5,7 +5,7 @@ import { ssrHelpers } from 'lib/ssrHelpers'
 import BrandHeader from 'components/BrandHeader'
 import profilesSSR from 'server-side-props/profilesSSR'
 import { IProfile } from 'models/Profile'
-import ProfileThumbnail from 'components/ProfileThumbnail'
+import ProfileThumbnail from 'components/profile/multi/ProfileThumbnail'
 
 const Home: NextPage<Props> = ({ profiles }) => {
    return (

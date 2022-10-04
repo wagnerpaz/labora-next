@@ -2,10 +2,10 @@
 import React from 'react'
 
 import { IProfile } from 'models/Profile'
-import Expertize from 'components/Expertize'
+import Expertize from 'components/profile/stateless/Expertize'
 import EditableSection from 'components/EditableSection'
-import ProfileImage from 'components/ProfileImage'
-import ProfileAbout from 'components/ProfileAbout'
+import ProfileImage from 'components/profile/single/ProfileImage'
+import ProfileAbout from 'components/profile/single/ProfileAbout'
 
 const ProfileIntro: React.FC<Props> = ({ profile }) => {
    return (
@@ -13,8 +13,8 @@ const ProfileIntro: React.FC<Props> = ({ profile }) => {
          <ProfileImage className="float-left mr-8 mb-4 z-10 shrink-0" />
          <ProfileAbout />
          <EditableSection>
-            <Expertize hideNormal />
-            <Expertize hideHighlight />
+            <Expertize profile={profile} hideNormal />
+            <Expertize profile={profile} hideHighlight />
          </EditableSection>
       </div>
    )
