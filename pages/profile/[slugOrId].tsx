@@ -50,7 +50,7 @@ const ProfilePage: NextPage<Props> = ({
                   <ProfileIntro profile={profile} />
                   {profile.education && (
                      <EditableSection>
-                        <div className="mt-8 flex items-start">
+                        <div className="mt-8 flex flex-col md:flex-row items-start">
                            <div className="flex items-start mb-8 w-[300px] shrink-0">
                               <FaGraduationCap
                                  color={theme.secondaryColorDark}
@@ -74,7 +74,7 @@ const ProfilePage: NextPage<Props> = ({
                      </EditableSection>
                   )}
                   {profile.employment?.length > 0 && (
-                     <div className="mt-8 flex items-start">
+                     <div className="mt-8 flex flex-col md:flex-row items-start">
                         <div className="flex items-center mb-8 w-[300px] shrink-0">
                            <MdHomeWork
                               color={theme.secondaryColorDark}

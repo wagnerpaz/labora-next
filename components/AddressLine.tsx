@@ -19,16 +19,16 @@ const AddressLine: React.FC<Props> = ({
 }) => {
    const socialMedias = { facebook, instagram, linkedin, github, stackoverflow }
    return (
-      <address className="not-italic flex justify-center items-start py-2.5">
-         <div className="container flex flex-row justify-between space-x-4 print:px-4">
-            <ul className="flex flex-row space-x-4">
+      <address className="not-italic flex justify-center items-start py-[9px]">
+         <div className="container flex flex-row justify-between space-x-4 print:px-4 overflow-hidden">
+            <ul className="inline-block space-x-4 whitespace-nowrap w-full truncate align-top">
                <Location country={country} city={city} state={state} />
                <Phone phoneNumber={phoneNumber} />
                <Email email={email} />
             </ul>
             {Object.keys(socialMedias).filter((sm) => socialMedias[sm]).length >
                0 && (
-               <ul className="flex flex-row space-x-4">
+               <ul className="inline-block space-x-4 whitespace-nowrap">
                   {Object.keys(socialMedias).map((smKey) => (
                      <SocialMediaIconLink
                         key={smKey}
