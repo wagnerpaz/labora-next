@@ -6,13 +6,14 @@ import { MdHomeWork } from 'react-icons/md'
 import themeSSR from 'server-side-props/themeSSR'
 import profileSSR from 'server-side-props/profileSSR'
 import { IProfile } from 'models/Profile'
-import ProfileAbout from 'components/ProfileAbout'
+import ProfileIntro from 'components/ProfileIntro'
 import { ssrHelpers } from 'lib/ssrHelpers'
 import { ITheme } from 'models/Theme'
 import BrandHeader from 'components/BrandHeader'
 import AddressLine from 'components/AddressLine'
 import EducationItem from 'components/EducationItem'
 import EmploymentItem from 'components/EmploymentItem'
+import EditableSection from 'components/EditableSection'
 
 const ProfilePage: NextPage<Props> = ({
    theme,
@@ -46,29 +47,31 @@ const ProfilePage: NextPage<Props> = ({
                      { 'overflow-auto': !noCardOverflowAuto }
                   )}
                >
-                  <ProfileAbout profile={profile} />
+                  <ProfileIntro profile={profile} />
                   {profile.education && (
-                     <div className="mt-8 flex items-start">
-                        <div className="flex items-start mb-8 w-[300px] shrink-0">
-                           <FaGraduationCap
-                              color={theme.secondaryColorDark}
-                              size={32}
-                           />
-                           <span className="text-3xl ml-2">Education</span>
+                     <EditableSection>
+                        <div className="mt-8 flex items-start">
+                           <div className="flex items-start mb-8 w-[300px] shrink-0">
+                              <FaGraduationCap
+                                 color={theme.secondaryColorDark}
+                                 size={32}
+                              />
+                              <span className="text-3xl ml-2">Education</span>
+                           </div>
+                           {profile.education?.map((ed, index) => (
+                              <EducationItem
+                                 key={index}
+                                 title={ed.title}
+                                 start={ed.start}
+                                 end={ed.end}
+                                 institution={ed.institution}
+                                 country={ed.address?.country}
+                                 city={ed.address?.city}
+                                 state={ed.address?.state}
+                              />
+                           ))}
                         </div>
-                        {profile.education?.map((ed, index) => (
-                           <EducationItem
-                              key={index}
-                              title={ed.title}
-                              start={ed.start}
-                              end={ed.end}
-                              institution={ed.institution}
-                              country={ed.address?.country}
-                              city={ed.address?.city}
-                              state={ed.address?.state}
-                           />
-                        ))}
-                     </div>
+                     </EditableSection>
                   )}
                   {profile.employment?.length > 0 && (
                      <div className="mt-8 flex items-start">
@@ -81,15 +84,16 @@ const ProfilePage: NextPage<Props> = ({
                         </div>
                         <ul className="list-disc ml-8 mt-0">
                            {profile.employment.map((empl) => (
-                              <EmploymentItem
-                                 key={empl.employer}
-                                 employer={empl.employer}
-                                 role={empl.role}
-                                 start={empl.start}
-                                 end={empl.end}
-                                 achievements={empl.achievements}
-                                 skills={empl.knowledge}
-                              />
+                              <EditableSection key={empl.employer}>
+                                 <EmploymentItem
+                                    employer={empl.employer}
+                                    role={empl.role}
+                                    start={empl.start}
+                                    end={empl.end}
+                                    achievements={empl.achievements}
+                                    skills={empl.knowledge}
+                                 />
+                              </EditableSection>
                            ))}
                         </ul>
                      </div>

@@ -18,7 +18,7 @@ const UserIcon = () => {
    return (
       <>
          {session?.user && (
-            <div className="relative w-[30px] h-[30px]">
+            <div className="relative w-[30px] h-[30px] print:hidden">
                <Image
                   alt="user image"
                   src={session.user.image}

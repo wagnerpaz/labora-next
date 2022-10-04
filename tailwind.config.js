@@ -23,4 +23,9 @@ module.exports = {
       },
    },
    plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
+   variants: {
+      extend: {
+         display: ['group-hover'],
+      },
+   },
 }

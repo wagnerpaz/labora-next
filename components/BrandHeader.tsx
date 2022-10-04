@@ -15,6 +15,7 @@ const BrandHeader: React.FC = () => {
          <div className="container flex justify-between items-center py-2">
             <Link href="/">
                <Image
+                  alt="Metapriori Logo"
                   src="/images/metapriori_logo_small50.png"
                   height={50}
                   width={173}
