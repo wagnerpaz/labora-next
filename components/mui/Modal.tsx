@@ -15,13 +15,15 @@ const Modal = React.forwardRef(function Modal(
          disableEnforceFocus
          ref={ref}
       >
-         <div
-            className={classNames(
-               'border-2 border-secondary-light rounded-md p-4 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white z-20',
-               className
-            )}
-         >
-            {props.children}
+         <div className="fixed container m-auto top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 p-12 outline-none">
+            <div
+               className={classNames(
+                  'border-2 border-secondary-light rounded-md p-4 bg-white w-full',
+                  className
+               )}
+            >
+               {props.children}
+            </div>
          </div>
       </ModalUnstyled>
    )

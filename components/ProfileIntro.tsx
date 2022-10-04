@@ -10,14 +10,11 @@ import ProfileAbout from 'components/ProfileAbout'
 const ProfileIntro: React.FC<Props> = ({ profile }) => {
    return (
       <div className="min-h-[300px]">
-         <ProfileImage
-            className="float-left mr-8 mb-4 z-10 shrink-0"
-            profile={profile}
-         />
-         <ProfileAbout profile={profile} />
+         <ProfileImage className="float-left mr-8 mb-4 z-10 shrink-0" />
+         <ProfileAbout />
          <EditableSection>
-            <Expertize profile={profile} hideNormal />
-            <Expertize profile={profile} hideHighlight />
+            <Expertize hideNormal />
+            <Expertize hideHighlight />
          </EditableSection>
       </div>
    )

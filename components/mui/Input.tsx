@@ -1,15 +1,13 @@
 import React from 'react'
 import classNames from 'classnames'
-import InputUnstyledUnstyled, {
-   InputUnstyledProps,
-} from '@mui/base/InputUnstyled'
+import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled'
 
 const Input = React.forwardRef(function Button(
    props: InputUnstyledProps & Props,
    ref: React.ForwardedRef<HTMLDivElement>
 ) {
    return (
-      <InputUnstyledUnstyled
+      <InputUnstyled
          {...props}
          componentsProps={{
             input: () => ({

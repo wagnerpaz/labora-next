@@ -1,9 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
-import FormControlUnstyled, {
-   FormControlUnstyledState,
-   FormControlUnstyledProps,
-} from '@mui/base/FormControlUnstyled'
+import FormControlUnstyled from '@mui/base/FormControlUnstyled'
 import { InputUnstyledProps } from '@mui/base'
 
 import Input from 'components/mui/Input'
@@ -13,7 +9,7 @@ const LabeledInput = React.forwardRef(function LabedInput(
    ref: React.ForwardedRef<HTMLDivElement>
 ) {
    return (
-      <FormControlUnstyled ref={ref} className={className}>
+      <FormControlUnstyled ref={ref} className={className} {...props}>
          <label className="inline-block normal-case pb-1">{props.label}</label>
          <Input {...props} />
       </FormControlUnstyled>

@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import EditableSection from 'components/EditableSection'
 import Modal from 'components/mui/Modal'
 import classNames from 'classnames'
+import ProfileContext from 'context/ProfileContext'
 
-const ProfileImage = ({ profile, className }) => {
+const ProfileImage = ({ className }) => {
+   const { profile } = useContext(ProfileContext)
    const [modalOpen, setModalOpen] = useState(false)
 
    return (

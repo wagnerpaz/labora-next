@@ -14,12 +14,27 @@ import AddressLine from 'components/AddressLine'
 import EducationItem from 'components/EducationItem'
 import EmploymentItem from 'components/EmploymentItem'
 import EditableSection from 'components/EditableSection'
+import ProfileContext, { ProfileProvider } from 'context/ProfileContext'
+import { useContext } from 'react'
 
 const ProfilePage: NextPage<Props> = ({
    theme,
-   profile,
+   profile: ssrProfile,
    noCardOverflowAuto = true,
 }) => {
+   return (
+      <ProfileProvider currentProfile={ssrProfile}>
+         <ProfileRender theme={theme} noCardOverflowAuto={noCardOverflowAuto} />
+      </ProfileProvider>
+   )
+}
+
+const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
+   theme,
+   noCardOverflowAuto,
+}) => {
+   const { profile } = useContext(ProfileContext)
+
    return (
       <div className="w-full h-full">
          <header>
