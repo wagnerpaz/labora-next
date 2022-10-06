@@ -5,7 +5,7 @@ const ProfileAbout: React.FC<Props> = ({ country, city, state }) => {
    return country || city || state ? (
       <li className="inline-block space-x-2">
          <MdLocationPin className="inline-block" />
-         <span className="truncate hidden md:inline align-text-top">{`${country}, ${city} - ${state}`}</span>
+         <span className="truncate hidden md:inline print:inline align-text-top">{`${country}, ${city} - ${state}`}</span>
       </li>
    ) : null
 }

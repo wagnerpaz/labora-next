@@ -8,6 +8,7 @@ export type IProfile = {
    fullName: string
    nickname: string
    photo?: string
+   photoUpdatedAt?: Date
    profession: string
    about?: string
    addresses: {
@@ -64,6 +65,7 @@ const schema = new Schema<IProfile>(
       fullName: { type: String, required: true },
       nickname: { type: String, required: true },
       photo: { type: String, required: false },
+      photoUpdatedAt: { type: Date, required: false },
       profession: { type: String, required: true },
       about: { type: String, required: false },
       addresses: {

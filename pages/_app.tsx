@@ -9,6 +9,7 @@ import { getAccessibleColor } from 'lib/getAccesibleColor'
 import { UserProvider } from 'context/UserContext'
 
 import '../styles/globals.css'
+import 'react-image-crop/dist/ReactCrop.css'
 
 function MyApp({
    Component,

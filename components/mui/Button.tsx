@@ -6,7 +6,7 @@ import ButtonUnstyled, {
 } from '@mui/base/ButtonUnstyled'
 
 const Button = React.forwardRef(function Button(
-   props: ButtonUnstyledProps & Props,
+   { loading, children, ...props }: ButtonUnstyledProps & Props,
    ref: React.ForwardedRef<HTMLButtonElement>
 ) {
    return (
@@ -29,13 +29,19 @@ const Button = React.forwardRef(function Button(
             }),
          }}
          ref={ref}
-      />
+      >
+         <div className="flex items-center justify-center">
+            {loading && <div className="loader-xs align-middle mr-2" />}
+            <span>{children}</span>
+         </div>
+      </ButtonUnstyled>
    )
 })
 
 type Props = {
    variant: 'text' | 'contained' | 'outline'
    size?: 'sm' | 'md'
+   loading?: boolean
 }
 
 export default Button
