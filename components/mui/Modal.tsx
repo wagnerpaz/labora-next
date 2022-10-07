@@ -23,7 +23,7 @@ const Modal = React.forwardRef(function Modal(
          >
             <div
                className={classNames(
-                  'border-2 border-secondary-light rounded-md p-4 bg-white w-full',
+                  'border-2 border-secondary-light rounded-xl p-4 bg-white w-full',
                   className
                )}
             >

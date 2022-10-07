@@ -80,7 +80,7 @@ const ProfileImage = ({ className }) => {
                >
                   <img
                      ref={(ref) => setImageRef(ref)}
-                     className="rounded-sm object-cover object-top"
+                     className="rounded-sm"
                      alt="Profile Photo"
                      src={image}
                      onLoad={onImageLoad}
@@ -91,8 +91,26 @@ const ProfileImage = ({ className }) => {
                   onChange={function (evt) {
                      const reader = new FileReader()
                      reader.addEventListener('load', () => {
-                        const uploaded_image = reader.result
-                        setImage(`${uploaded_image}`)
+                        //RECIEVE THE ORIGINAL IMAGE
+                        const uploadedImage = reader.result
+                        const canvas = document.createElement('canvas')
+                        const context2d = canvas.getContext('2d')
+                        const image = new Image()
+                        image.src = uploadedImage as string
+                        image.onload = () => {
+                           //RESIZE TO MAX WIDTH 300
+                           canvas.width = 300
+                           canvas.height =
+                              (image.naturalHeight / image.naturalWidth) * 300
+                           context2d.drawImage(
+                              image,
+                              0,
+                              0,
+                              canvas.width,
+                              canvas.height
+                           )
+                           setImage(`${canvas.toDataURL('image/png')}`)
+                        }
                      })
                      reader.readAsDataURL(evt.target.files[0])
                   }}
