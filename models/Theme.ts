@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose'
 
-import registerService from 'lib/registerService'
+import registerRetrieveService from 'lib/registerService'
 
 export type ITheme = {
    primaryColor: string
@@ -14,7 +14,7 @@ const themeSchema = new Schema<ITheme>({
    secondaryColorDark: { type: String, required: true },
 })
 
-const Theme = registerService('Theme', () =>
+const Theme = registerRetrieveService('Theme', () =>
    model<ITheme>('theme', themeSchema, 'theme')
 )
 

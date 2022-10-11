@@ -1,6 +1,5 @@
-import registerService from 'lib/registerService'
+import registerRetrieveService from 'lib/registerService'
 import mongoose from 'mongoose'
-import type { NextApiRequest, NextApiResponse } from 'next'
 
 if (!process.env.MONGODB_URL) {
    throw new Error(
@@ -10,7 +9,7 @@ if (!process.env.MONGODB_URL) {
 
 const connectDB = () => {
    // Use new db connection
-   registerService('mongooseConnection', async () =>
+   return registerRetrieveService('mongooseConnection', async () =>
       mongoose.connect(process.env.MONGODB_URL, () =>
          console.log('MongoDB connection created!')
       )

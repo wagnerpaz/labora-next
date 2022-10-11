@@ -1,11 +1,8 @@
-const registerService = (name: string, initFn: () => void) => {
-   if (process.env.NODE_ENV === 'development') {
-      if (!(name in global)) {
-         global[name] = initFn()
-      }
-      return global[name]
+const registerRetrieveService = (name: string, initFn: () => void) => {
+   if (!(name in global)) {
+      global[name] = initFn()
    }
-   return initFn()
+   return global[name]
 }
 
-export default registerService
+export default registerRetrieveService

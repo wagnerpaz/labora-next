@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose'
 
-import registerService from 'lib/registerService'
+import registerRetrieveService from 'lib/registerService'
 
 export type IProfile = {
    _id: string
@@ -118,7 +118,7 @@ const schema = new Schema<IProfile>(
    { strictQuery: false, strict: true }
 )
 
-const Profile = registerService('Profile', () =>
+const Profile = registerRetrieveService('Profile', () =>
    model<IProfile>('profile', schema)
 )
 

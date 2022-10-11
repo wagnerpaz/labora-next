@@ -12,15 +12,16 @@ const UserContext = React.createContext<Value>({
 
 export const UserProvider = ({ children }) => {
    const { data: session } = useSession()
-   const { data: profile } = useProfileByOwner(session?.user?.email)
+   const { data: ownProfile } = useProfileByOwner(session?.user?.email)
    const router = useRouter()
 
    const isSelected =
-      router.query.slugOrId === profile?.slug ||
-      router.query.slugOrId === profile?._id
+      router.query.slugOrId === ownProfile?.slug ||
+      router.query.slugOrId === ownProfile?._id ||
+      session?.user?.role === 'ADMIN'
 
    return (
-      <UserContext.Provider value={{ profile, isSelected }}>
+      <UserContext.Provider value={{ profile: ownProfile, isSelected }}>
          {children}
       </UserContext.Provider>
    )

@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
-
-import useGetProfile from 'hooks/api/useGetProfile'
+import React, { useState } from 'react'
 import { IProfile } from 'models/Profile'
 
 const ProfileContext = React.createContext<Value>({
