@@ -24,7 +24,7 @@
 3. Create a `.env.local` file with the current content
 
 ```
-MONGODB_URL="mongodb://localhost:27017/resumebuilder"
+MONGODB_URI="mongodb://localhost:27017/resumebuilder"
 ```
 
 5. run `yarn`

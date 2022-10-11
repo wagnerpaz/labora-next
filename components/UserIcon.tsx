@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from './mui/Button'
+import { ClickAwayListener } from '@mui/base'
 import Link from 'next/link'
 
-import useProfileByOwner from 'hooks/api/useProfileByOwner'
-import ClickOutside from 'components/ClickOutside'
+import Button from './mui/Button'
+
 import UserContext from 'context/UserContext'
 
 const UserIcon = () => {
@@ -28,7 +28,7 @@ const UserIcon = () => {
                   onClick={() => setMenuOpened(!menuOpened)}
                />
                {menuOpened && (
-                  <ClickOutside onClickOutside={() => setMenuOpened(false)}>
+                  <ClickAwayListener onClickAway={() => setMenuOpened(false)}>
                      <div className="absolute right-0 bg-white border-[1px] border-secondary-light p-2 px-4 rounded-md shadow-lg z-10">
                         <small className="block">Signed in as</small>
                         <strong>
@@ -55,7 +55,7 @@ const UserIcon = () => {
                            Sign out
                         </Button>
                      </div>
-                  </ClickOutside>
+                  </ClickAwayListener>
                )}
             </div>
          )}
