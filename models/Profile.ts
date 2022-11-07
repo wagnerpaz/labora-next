@@ -47,17 +47,42 @@ export type IProfile = {
          }
       }
    ]
-   employment: [
-      {
-         employer: string
-         role: string
-         start: string
-         end?: string
-         achievements?: [string]
-         knowledge?: [string]
-      }
-   ]
+   employment: [IEmploymentItem]
 }
+
+export type IEmploymentItem = {
+   employer: string
+   role: string
+   start: string
+   end?: string
+   achievements?: IAchievementItem[]
+   knowledge?: IKnowledgeItem[]
+}
+
+export type IAchievementItem = {
+   description: string
+}
+
+export type IKnowledgeItem = {
+   description: string
+}
+
+const achievementSchema = new Schema<IAchievementItem>({
+   description: String,
+})
+
+const knowledgeSchema = new Schema<IKnowledgeItem>({
+   description: String,
+})
+
+const employmentSchema = new Schema<IEmploymentItem>({
+   employer: String,
+   role: String,
+   start: String,
+   end: { type: String, required: false },
+   achievements: [achievementSchema],
+   knowledge: [knowledgeSchema],
+})
 
 const schema = new Schema<IProfile>(
    {
@@ -104,18 +129,9 @@ const schema = new Schema<IProfile>(
             },
          },
       ],
-      employment: [
-         {
-            employer: String,
-            role: String,
-            start: String,
-            end: { type: String, required: false },
-            achievements: { type: [String], required: false },
-            knowledge: { type: [String], required: false },
-         },
-      ],
+      employment: [employmentSchema],
    },
-   { strictQuery: false, strict: true }
+   {}
 )
 
 const Profile = registerRetrieveService('Profile', () =>

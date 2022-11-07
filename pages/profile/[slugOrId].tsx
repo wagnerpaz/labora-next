@@ -16,6 +16,8 @@ import EmploymentItem from 'components/profile/stateless/EmploymentItem'
 import EditableSection from 'components/EditableSection'
 import ProfileContext, { ProfileProvider } from 'context/ProfileContext'
 import { useContext } from 'react'
+import Button from 'components/mui/Button'
+import UserContext from 'context/UserContext'
 
 const ProfilePage: NextPage<Props> = ({
    theme,
@@ -34,6 +36,7 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
    noCardOverflowAuto,
 }) => {
    const { profile } = useContext(ProfileContext)
+   const { isSelected } = useContext(UserContext)
 
    return (
       <div className="w-full h-full">
@@ -66,12 +69,24 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
                   {profile.education && (
                      <EditableSection>
                         <div className="mt-8 flex flex-col md:flex-row items-start">
-                           <div className="flex items-start mb-8 w-[300px] shrink-0">
-                              <FaGraduationCap
-                                 color={theme.secondaryColorDark}
-                                 size={32}
-                              />
-                              <span className="text-3xl ml-2">Education</span>
+                           <div className="flex justify-between mb-8 w-[300px] shrink-0">
+                              <div className="flex items-center">
+                                 <FaGraduationCap
+                                    color={theme.secondaryColorDark}
+                                    size={32}
+                                 />
+                                 <span className="text-3xl ml-2">
+                                    Education
+                                 </span>
+                              </div>
+                              {/*isSelected && (
+                                 <Button
+                                    className="min-w-[30px] print:hidden"
+                                    variant="outline"
+                                 >
+                                    Add
+                                 </Button>
+                              )*/}
                            </div>
                            {profile.education?.map((ed, index) => (
                               <EducationItem
@@ -90,25 +105,30 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
                   )}
                   {profile.employment?.length > 0 && (
                      <div className="mt-8 flex flex-col md:flex-row items-start">
-                        <div className="flex items-center mb-8 w-[300px] shrink-0">
-                           <MdHomeWork
-                              color={theme.secondaryColorDark}
-                              size={32}
-                           />
-                           <span className="text-3xl ml-2">Employment</span>
+                        <div className="flex justify-between mb-8 w-[300px] shrink-0">
+                           <div className="flex items-center">
+                              <MdHomeWork
+                                 color={theme.secondaryColorDark}
+                                 size={32}
+                              />
+                              <span className="text-3xl ml-2">Employment</span>
+                           </div>
+                           {isSelected && (
+                              <Button
+                                 className="min-w-[30px] print:hidden"
+                                 variant="outline"
+                              >
+                                 Add
+                              </Button>
+                           )}
                         </div>
                         <ul className="list-disc ml-8 mt-0">
-                           {profile.employment.map((empl) => (
-                              <EditableSection key={empl.employer}>
-                                 <EmploymentItem
-                                    employer={empl.employer}
-                                    role={empl.role}
-                                    start={empl.start}
-                                    end={empl.end}
-                                    achievements={empl.achievements}
-                                    skills={empl.knowledge}
-                                 />
-                              </EditableSection>
+                           {profile.employment.map((employmentItem, index) => (
+                              <EmploymentItem
+                                 key={employmentItem.employer}
+                                 employmentItem={employmentItem}
+                                 employmentIndex={index}
+                              />
                            ))}
                         </ul>
                      </div>

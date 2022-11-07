@@ -58,11 +58,15 @@ const ProfileImage = ({ className }) => {
          className={classNames('w-[300px] h-[300px]', className)}
          onClick={() => setModalOpen(true)}
       >
-         <img
-            className="rounded-sm object-cover object-top"
-            alt="Profile Photo"
-            src={`/api/profile/photo/${profile._id}?${+profile.photoUpdatedAt}`}
-         />
+         <div className="bg-gray-200 w-full h-full">
+            <img
+               className="rounded-sm object-cover object-top"
+               alt="Profile Photo"
+               src={`/api/profile/photo/${
+                  profile._id
+               }?${+profile.photoUpdatedAt}`}
+            />
+         </div>
          <Modal
             className="min-w-[400px] min-h-[400px]"
             noContainer

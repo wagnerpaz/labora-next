@@ -1,48 +1,79 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+
+import EditableSection from 'components/EditableSection'
+import Modal from 'components/mui/Modal'
+import EmploymentItemForm from 'components/forms/EmploymentItemForm'
+import { IEmploymentItem } from 'models/Profile'
+import usePutProfile from 'hooks/api/usePutProfile'
+import ProfileContext from 'context/ProfileContext'
 
 const EmploymentItem: React.FC<Props> = ({
-   employer,
-   role,
-   start,
-   end,
-   achievements,
-   skills,
+   employmentItem,
+   employmentIndex,
 }) => {
+   const [modalOpen, setModalOpen] = useState(false)
+
+   const [putProfile] = usePutProfile()
+   const { profile, setProfile } = useContext(ProfileContext)
+
+   const {
+      role,
+      employer,
+      start,
+      end,
+      achievements = [],
+      knowledge = [],
+   } = employmentItem
+
    return (
-      <li className="mb-6">
-         <span className="block text-xl">{role}</span>
-         <span className="block text-base">
-            {employer} • {start} -{end ? end : 'PRESENT'}
-         </span>
-         <ul className="ml-8 list-circle mt-2">
-            {achievements.map((achv) => (
-               <li className="print:break-inside-avoid" key={achv}>
-                  {achv}
-               </li>
-            ))}
-         </ul>
-         <span className="inline-block mt-2 opacity-50">
-            Skills:{' '}
-            <ul className="inline">
-               {skills.map((k, index) => (
-                  <span key={k}>
-                     <li className="inline-block">{k}</li>
-                     {index !== skills.length - 1 && ', '}
-                  </span>
+      <EditableSection onClick={() => setModalOpen(true)}>
+         <li className="mb-6">
+            <span className="block text-xl">{role}</span>
+            <span className="block text-base">
+               {employer} • {start} - {end ? end : 'PRESENT'}
+            </span>
+            <ul className="ml-8 list-circle mt-2">
+               {achievements.map((achv) => (
+                  <li
+                     className="print:break-inside-avoid"
+                     key={achv.description}
+                  >
+                     {achv.description}
+                  </li>
                ))}
             </ul>
-         </span>
-      </li>
+            <span className="inline-block mt-2 opacity-50">
+               Skills:{' '}
+               <ul className="inline">
+                  {knowledge.map((k, index) => (
+                     <span key={k.description}>
+                        <li className="inline-block">{k.description}</li>
+                        {index !== knowledge.length - 1 && ', '}
+                     </span>
+                  ))}
+               </ul>
+            </span>
+         </li>
+         <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+            <EmploymentItemForm
+               employmentItem={employmentItem}
+               onCancel={() => setModalOpen(false)}
+               onSave={async (newEmployerItem) => {
+                  const newProfile = { ...profile }
+                  newProfile.employment[employmentIndex] = newEmployerItem
+                  await putProfile(newProfile)
+                  setModalOpen(false)
+                  setProfile(newProfile)
+               }}
+            />
+         </Modal>
+      </EditableSection>
    )
 }
 
 type Props = {
-   employer: string
-   role: string
-   start: string
-   end: string
-   achievements: [string]
-   skills: [string]
+   employmentItem: IEmploymentItem
+   employmentIndex: number
 }
 
 export default EmploymentItem

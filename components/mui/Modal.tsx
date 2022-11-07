@@ -5,7 +5,12 @@ import ModalUnstyled, { ModalUnstyledProps } from '@mui/base/ModalUnstyled'
 import Backdrop from 'components/mui/Backdrop'
 
 const Modal = React.forwardRef(function Modal(
-   { className, noContainer, ...props }: ModalUnstyledProps & Props,
+   {
+      className,
+      containerClassName = '',
+      noContainer,
+      ...props
+   }: ModalUnstyledProps & Props,
    ref: React.ForwardedRef<HTMLDivElement>
 ) {
    return (
@@ -17,13 +22,14 @@ const Modal = React.forwardRef(function Modal(
       >
          <div
             className={classNames(
-               'fixed m-auto top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 p-12 outline-none',
-               { container: !noContainer }
+               'fixed m-auto top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 outline-none h-full w-full -ml-2',
+               { container: !noContainer },
+               containerClassName
             )}
          >
             <div
                className={classNames(
-                  'border-2 border-secondary-light rounded-xl p-4 bg-white w-full',
+                  'border-2 border-secondary-light rounded-xl p-4 bg-white overflow-auto absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 max-h-[calc(100%-80px)] w-[calc(100%-80px)]',
                   className
                )}
             >
@@ -36,6 +42,7 @@ const Modal = React.forwardRef(function Modal(
 
 type Props = {
    noContainer?: boolean
+   containerClassName?: string
 }
 
 export default Modal
