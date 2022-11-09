@@ -26,7 +26,18 @@ const EmploymentItem: React.FC<Props> = ({
    } = employmentItem
 
    return (
-      <EditableSection onClick={() => setModalOpen(true)}>
+      <EditableSection
+         onEditClick={() => setModalOpen(true)}
+         onDeleteClick={async () => {
+            const newProfile = { ...profile }
+            newProfile.employment = newProfile.employment.filter(
+               (e, index) => index !== employmentIndex
+            )
+            await putProfile(newProfile)
+            setModalOpen(false)
+            setProfile(newProfile)
+         }}
+      >
          <li className="mb-6">
             <span className="block text-xl">{role}</span>
             <span className="block text-base">

@@ -1,21 +1,32 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import classNames from 'classnames'
-import { MdEdit } from 'react-icons/md'
+import { MdEdit, MdDelete } from 'react-icons/md'
 
 import UserContext from 'context/UserContext'
 
-const EditableSection: React.FC<Props> = ({ className, children, onClick }) => {
+const EditableSection: React.FC<Props> = ({
+   className,
+   children,
+   hideDelete,
+   onEditClick,
+   onDeleteClick,
+}) => {
    const { isSelected } = useContext(UserContext)
    return (
       <div className={classNames(className, 'relative group min-h-0 min-w-0')}>
          {children}
-         <MdEdit
+         <div
             className={classNames(
-               'absolute right-2 top-2 hidden group-hover:block cursor-pointer print:group-hover:hidden',
+               'absolute right-2 top-2 hidden group-hover:flex cursor-pointer print:group-hover:hidden flex-row gap-2',
                { 'group-hover:hidden': !isSelected }
             )}
-            onClick={onClick}
-         />
+         >
+            <MdDelete
+               className={classNames({ hidden: hideDelete })}
+               onClick={onDeleteClick}
+            />
+            <MdEdit onClick={onEditClick} />
+         </div>
       </div>
    )
 }
@@ -23,7 +34,9 @@ const EditableSection: React.FC<Props> = ({ className, children, onClick }) => {
 type Props = {
    className?: string
    children: React.ReactNode
-   onClick?: MouseEventHandler<SVGElement>
+   hideDelete?: boolean
+   onEditClick?: MouseEventHandler<SVGElement>
+   onDeleteClick?: MouseEventHandler<SVGElement>
 }
 
 export default EditableSection

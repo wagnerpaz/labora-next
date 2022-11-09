@@ -12,7 +12,7 @@ const ProfileIntro: React.FC<Props> = ({ profile }) => {
       <div className="min-h-[300px]">
          <ProfileImage className="float-left mr-8 mb-4 z-10 shrink-0" />
          <ProfileAbout />
-         <EditableSection>
+         <EditableSection hideDelete>
             <Expertize profile={profile} hideNormal />
             <Expertize profile={profile} hideHighlight />
          </EditableSection>

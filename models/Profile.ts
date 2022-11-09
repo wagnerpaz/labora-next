@@ -47,7 +47,7 @@ export type IProfile = {
          }
       }
    ]
-   employment: [IEmploymentItem]
+   employment: IEmploymentItem[]
 }
 
 export type IEmploymentItem = {

@@ -15,9 +15,12 @@ import EducationItem from 'components/profile/stateless/EducationItem'
 import EmploymentItem from 'components/profile/stateless/EmploymentItem'
 import EditableSection from 'components/EditableSection'
 import ProfileContext, { ProfileProvider } from 'context/ProfileContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Button from 'components/mui/Button'
 import UserContext from 'context/UserContext'
+import Modal from 'components/mui/Modal'
+import EmploymentItemForm from 'components/forms/EmploymentItemForm'
+import usePutProfile from 'hooks/api/usePutProfile'
 
 const ProfilePage: NextPage<Props> = ({
    theme,
@@ -35,8 +38,13 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
    theme,
    noCardOverflowAuto,
 }) => {
-   const { profile } = useContext(ProfileContext)
+   const { profile, setProfile } = useContext(ProfileContext)
    const { isSelected } = useContext(UserContext)
+
+   const [putProfile] = usePutProfile()
+
+   const [addEmploymentItemModalOpen, setAddEmploymentItemModalOpen] =
+      useState(false)
 
    return (
       <div className="w-full h-full">
@@ -117,6 +125,9 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
                               <Button
                                  className="min-w-[30px] print:hidden"
                                  variant="outline"
+                                 onClick={() =>
+                                    setAddEmploymentItemModalOpen(true)
+                                 }
                               >
                                  Add
                               </Button>
@@ -131,6 +142,29 @@ const ProfileRender: React.FC<Omit<Props, 'profile'>> = ({
                               />
                            ))}
                         </ul>
+                        <Modal
+                           open={addEmploymentItemModalOpen}
+                           onClose={() => setAddEmploymentItemModalOpen(false)}
+                        >
+                           <EmploymentItemForm
+                              employmentItem={{
+                                 employer: '',
+                                 role: '',
+                                 start: '',
+                                 end: '',
+                              }}
+                              onCancel={() =>
+                                 setAddEmploymentItemModalOpen(false)
+                              }
+                              onSave={async (newEmployerItem) => {
+                                 const newProfile = { ...profile }
+                                 newProfile.employment.unshift(newEmployerItem)
+                                 await putProfile(newProfile)
+                                 setAddEmploymentItemModalOpen(false)
+                                 setProfile(newProfile)
+                              }}
+                           />
+                        </Modal>
                      </div>
                   )}
                </div>

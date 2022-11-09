@@ -14,7 +14,7 @@ const ProfileAbout: React.FC = ({}) => {
    const [modalOpen, setModalOpen] = useState(false)
 
    return (
-      <EditableSection onClick={() => setModalOpen(true)}>
+      <EditableSection hideDelete onEditClick={() => setModalOpen(true)}>
          <span className="block text-3xl">{profile.fullName}</span>
          <span className="block text-xl opacity-50">{profile.profession}</span>
          <p className="mt-4 min-h-[100px] mb-auto">{profile.about}</p>
