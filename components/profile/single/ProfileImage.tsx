@@ -56,7 +56,8 @@ const ProfileImage = ({ className }) => {
    return (
       <EditableSection
          className={classNames('w-[300px] h-[300px]', className)}
-         onClick={() => setModalOpen(true)}
+         hideDelete
+         onEditClick={() => setModalOpen(true)}
       >
          <div className="bg-gray-200 w-full h-full">
             <img
@@ -69,7 +70,6 @@ const ProfileImage = ({ className }) => {
          </div>
          <Modal
             className="min-w-[400px] min-h-[400px]"
-            noContainer
             open={modalOpen}
             onClose={() => setModalOpen(false)}
          >
